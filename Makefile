@@ -14,28 +14,32 @@ BACKEND_CONFIG = -backend-config="encrypt=true" \
 TF_CONFIG = -var="region=$(region)" \
 	-var-file="values.tfvars" 
 
-
-init:        								# Sets up the environment or forces backend configuration changes (-reconfigure)                                      
+# Sets up the environment or forces backend configuration changes (-reconfigure)  
+init:        								                                    
 	terraform init \
 		$(TF_CONFIG) \
 		-reconfigure \
 		-input=true $(BACKEND_CONFIG)              
 
-
-plan:    									# Compares the state file against the plan and shows the difference                                          
+# Compares the state file against the plan and shows the difference
+plan:    									                                          
 	terraform plan $(TF_CONFIG) -out="$(terraform_plan)"
 
-validate:              						# Validates the syntax of the configuration                             
+# Validates the syntax of the configuration
+validate:              						                             
 	terraform validate
 
-import:      								# Imports existing infrastructure resources into the state file                                       
+# Imports existing infrastructure resources into the state file
+import:      								                                       
 	terraform import \
 		$(TF_CONFIG) \
 		$(TF_ARGS)
 
-apply:                           			# Applies changes to the infrastructure                   
+# Applies changes to the infrastructure
+apply:                           			                   
 	terraform apply $(terraform_plan)
 
-refresh:                        			# Updates the state file with any changes to the infrastructure resources                    
+# Updates the state file with any changes to the infrastructure resources
+refresh:                        			                    
 	terraform refresh \
 		$(TF_CONFIG) \
