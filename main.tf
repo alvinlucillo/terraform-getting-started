@@ -1,9 +1,8 @@
+# The empty block is also called partial configuration which
+#  inform Terraform that backend configuration is defined dynamically.
+#  This project uses -backend-configuration (see Makefile)
 terraform {
-  backend "s3" {
-    region = var.region
-    key = "terraform.tfstate"
-    state = "terraform-state"
-  }
+  backend "s3" {}
 }
 
 provider "aws" {
@@ -24,15 +23,3 @@ resource "aws_s3_bucket_versioning" "s3_bucket_versioning_test" {
     status = var.s3_map[each.key].versioning ? "Enabled" : "Suspended"
   } 
 }
-
-# resource "aws_s3_bucket_public_access_block" "s3_bucket_public_block_test" {
-#   for_each = aws_s3_bucket.s3_test
-
-#   bucket                  = each.value.id
-
-#   block_public_acls       = try(var.s3_map[each.key].allow_public_access, false)
-#   block_public_policy     = try(var.s3_map[each.key].allow_public_access, false)
-#   ignore_public_acls      = try(var.s3_map[each.key].allow_public_access, false)
-#   restrict_public_buckets = try(var.s3_map[each.key].allow_public_access, false)
-# }
-

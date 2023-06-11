@@ -5,7 +5,7 @@ This simple project demonstrates basic operations in managing your AWS infrastru
 There are different files in this project:
 
 1. `Makefile` — contains command shortcuts to execute Terraform commands. For example, **make apply** executes Terraform's apply command.
-2. `main.tf` — defines the resource blocks, and backend and provider configuration
+2. `main.tf` — defines the resource blocks and provider configuration
 3. `variables.tf` — defines the variables used in main.tf
 4. `values.tfvars` — assigns values to the variables in variables.tf
 
