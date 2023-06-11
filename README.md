@@ -1,5 +1,6 @@
 ## Getting started
-This simple project demonstrates basic operations in managing your AWS infrastructure using Terraform.
+This simple project demonstrates basic operations in managing your AWS infrastructure using Terraform. More on this by visiting this Medium article:
+https://medium.com/nullifying-the-null/getting-started-with-terraform-and-aws-751d762f31fc
 
 ### Project structure
 There are different files in this project:
