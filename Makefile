@@ -20,7 +20,16 @@ TF_CONFIG = -var="region=$(region)" \
 
 # Sets up the environment, and creates state folder and plan file
 # Forces backend configuration changes (-reconfigure)  
-init:        								                                    
+init:
+	@echo "Checking if ${s3bucket} bucket exists..."
+	@if aws s3api head-bucket --bucket $(s3bucket) --region $(region) 2>/dev/null; then \
+        echo "Bucket already exists."; \
+	else \
+		echo "Bucket not found. Creating it..."; \
+		aws s3api create-bucket --bucket $(s3bucket) --region $(region) >/dev/null 2>&1; \
+		echo "Bucket created."; \
+    fi
+	     								                                    
 	terraform init \
 		$(TF_CONFIG) \
 		-reconfigure \
